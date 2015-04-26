@@ -6,18 +6,6 @@
     "id": "example",
     "extension": [
         {
-            "url": "http://moh.gov/fhir/schedule/maxnumber最大预约人次",
-            "valueString": "[int]"
-        },
-        {
-            "url": "http://hl7.org/fhir/StructureDefinition/serialNumber预约序号列表",
-            "valueString": "2,4,6,8,10,12,14"
-        },
-        {
-            "url": "http://hl7.org/fhir/StructureDefinition/能否加号的标志",
-            "valueString": "0 1"
-        },
-        {
             "url": "http://hl7.org/fhir/StructureDefinition/status排班状态",
             "valueCode": "可约、已满、停诊"
         },
@@ -99,18 +87,7 @@
     "resourceType": "Schedule",
     "id": "example",
     "extension": [
-        {
-            "url": "http://moh.gov/fhir/schedule/maxnumber最大预约人次",
-            "valueString": "8"
-        },
-        {
-            "url": "http://hl7.org/fhir/StructureDefinition/serialNumber预约序号列表",
-            "valueString": "2"
-        },
-        {
-            "url": "http://hl7.org/fhir/StructureDefinition/能否加号的标志",
-            "valueString": "0"
-        },
+
         {
             "url": "http://hl7.org/fhir/StructureDefinition/status排班状态",
             "valueCode": "可约"

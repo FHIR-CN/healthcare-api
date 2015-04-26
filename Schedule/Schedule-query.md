@@ -166,10 +166,9 @@
 }
 ```
 
-2、获取某家的所有医生列表：
+2、获取某个医生的排班信息：
 
-GET  base /Practitioner?hospital-identifier=[id]{&_format=[mime-type]}
-
+GET  base /Schedule?doctor-identifier=[工号]{&_format=[mime-type]}
 ```
 {
     "resourceType": "Bundle",
@@ -179,171 +178,94 @@ GET  base /Practitioner?hospital-identifier=[id]{&_format=[mime-type]}
     "total": "1",
     "entry": {
         "resource": {
-            "resourceType": "Practitioner",
-            "id": "a4263470-b27b-4096-bb14-56e0ea800a7e",
-            "text": {
-                "status": "generated",
-                "div": "<div>医生简介</div>"
-            },
-            "extension": {
-                "url": "http://hl7.org/fhir/StructureDefinition/医生图片",
-                "valueString": "20150330113732312.jpg"
-            },
-            "identifier": {
-                "use": "official",
-                "system": "医生工号分配机构编码",
-                "value": "0051"
-            },
-            "name": {
-                "text": "李靖婕"
-            },
-            "telecom": [
+            "resourceType": "Schedule",
+            "id": "example",
+            "extension": [
+
                 {
-                    "system": "phone",
-                    "value": "工作联系电话",
-                    "use": "work"
+                    "url": "http://hl7.org/fhir/StructureDefinition/status排班状态",
+                    "valueCode": "可约"
                 },
                 {
-                    "system": "email",
-                    "value": "工作联系邮箱",
-                    "use": "work"
+                    "url": "http://hl7.org/fhir/StructureDefinition/price",
+                    "valueString": "300"
                 },
                 {
-                    "system": "url",
-                    "value": "个人主页",
-                    "use": "work"
+                    "url": "http://hl7.org/fhir/StructureDefinition/医务人员所属二级科室的编码",
+                    "valueIdentifier": {
+                        "use": "official",
+                        "system": "二级科室编码的分配机构",
+                        "value": "KS03.07"
+                    }
                 },
                 {
-                    "system": "微信",
-                    "value": "0205664440",
-                    "use": "work"
+                    "url": "http://hl7.org/fhir/StructureDefinition/医务人员所属二级科室的名称",
+                    "valueString": "内分泌科"
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/医务人员所属二级科室的系统id",
+                    "valueString": "Practitioner/xxxxxx"
                 }
             ],
-            "address": [
+            "type": [
                 {
-                    "use": "work",
-                    "text": "工作地点",
-                    "city": "城市",
-                    "postalCode": "邮编",
-                    "country": "国家"
+                    "coding": [
+                        {
+                            "code": "类型编码-专家编码",
+                            "display": "专家"
+                        }
+                    ]
+                },
+                {
+                    "coding": [
+                        {
+                            "code": "类型编码-早班编码",
+                            "display": "上午"
+                        }
+                    ]
                 }
             ],
-            "gender": "male",
-            "birthDate": "出生日期",
-            "practitionerRole": [
-                {
-                    "managingOrganization": {
-                        "reference": "医务人员所属医院的系统idOrganization/f001"
-                    },
-                    "extension": {
-                        "url": "http://hl7.org/fhir/StructureDefinition/医务人员所属医院的医疗机构代码",
+            "actor": {
+                "reference": "医生的系统id Practitioner/1",
+                "extension": [
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/医生工号",
                         "valueIdentifier": {
                             "use": "official",
-                            "system": "医疗机构代码",
-                            "value": "42500049500 "
+                            "system": "医生工号分配机构编码",
+                            "value": "0051"
                         }
                     },
-                    "role": {
-                        "coding": [
-                            {
-                                "system": "http://hl7.org/fhir/StructureDefinition/医务人员类别代码",
-                                "code": "4",
-                                "display": "执业医师"
-                            }
-                        ],
-                        "text": "Care role"
+                    {
+                        "url": "http://moh.gov/fhir/schedule/医生姓名",
+                        "valueString": "罗飞宏 "
                     },
-                    "specialty": [
-                        {
-                            "coding": [
-                                {
-                                    "system": "http://hl7.org/fhir/StructureDefinition/疾病编码",
-                                    "code": "专治疾病",
-                                    "display": "专治疾病 糖原贮积病 骨质疏松 糖尿病 甲减 甲亢 "
-                                }
-                            ],
-                            "text": "长期从事小儿脑瘫早期、超早期诊断及脑病后遗症康复方法的研究，擅长小儿脑性瘫痪、小儿智力低下、语言发育迟缓、周围神经损伤、脑炎后遗症、遗传代谢病等小儿神经伤残疾病的康复评定工作"
+                    {
+                        "url": "http://moh.gov/fhir/schedule/医生职称",
+                        "valueString": {
+                            "system": "http://hl7.org/fhir/StructureDefinition/职级编码",
+                            "code": "职级编码",
+                            "display": "主任医师"
                         }
-                    ]
-                },
-                {
-                    "managingOrganization": {
-                        "reference": "医务人员所属一级科室的系统idOrganization/f001"
-                    },
-                    "extension": [
-                        {
-                            "url": "http://hl7.org/fhir/StructureDefinition/医务人员所属一级科室的编码",
-                            "valueIdentifier": {
-                                "use": "official",
-                                "system": "一级科室的编码分配机构",
-                                "value": "KS50 "
-                            }
-                        },
-                        {
-                            "url": "http://hl7.org/fhir/StructureDefinition/医务人员所属一级科室的名称",
-                            "valueString": "中医科"
-                        }
-                    ]
-                },
-                {
-                    "managingOrganization": {
-                        "reference": "Organization/427a6f50-f526-4388-a187-d5ede65d8efe"
-                    },
-                    "extension": [
-                        {
-                            "url": "http://hl7.org/fhir/StructureDefinition/医务人员所属二级科室的编码",
-                            "valueIdentifier": {
-                                "use": "official",
-                                "system": "二级科室编码的分配机构",
-                                "value": "KS50.15"
-                            }
-                        },
-                        {
-                            "url": "http://hl7.org/fhir/StructureDefinition/医务人员所属二级科室的名称",
-                            "valueString": "康复医学科"
-                        }
-                    ]
-                }
-            ],
-            "qualification": [
-                {
-                    "code": {
-                        "coding": [
-                            {
-                                "system": "http://hl7.org/fhir/StructureDefinition/职称编码",
-                                "code": "4",
-                                "display": "主任医师"
-                            }
-                        ]
                     }
-                },
-                {
-                    "code": {
-                        "coding": [
-                            {
-                                "system": "http://hl7.org/fhir/StructureDefinition/职级编码",
-                                "code": "4",
-                                "display": "教授"
-                            }
-                        ]
-                    }
-                }
-            ]
+                ]
+            },
+            "planningHorizon": {
+                "start": "门诊时间开始时间2013-12-25T07:30:00Z",
+                "end": "门诊时间结束时间2013-12-25T10:00:00Z"
+            },
+            "comment": "备注信息"
         }
     }
 }
 ```
-获取所有所有医疗机构及其下属的一级、二级科室的医生列表：
-GET  base /Practitioner{?_format=[mime-type]}
-获取某省某市所有医院的医生列表：
-GET  base /Practitioner?address=上海 and 闵行{&_format=[mime-type]}
-获取某家医院的所有医生列表：
-GET  base /Practitioner?hospital-identifier=[id]{&_format=[mime-type]}
-获取某家医院的某个一级科室的所有医生列表：
-GET  base /Practitioner?L1-depart-identifier=[id]&hospital-identifier=[id] {&_format=[mime-type]}
-获取某家医院的某个一级科室下的某个二级科室的所有医生列表：
-GET  base /Practitioner?L2-depart-identifier=[id]&hospital-identifier=[id]&L1-depart-identifier=[id]{&_format=[mime-type]}
-获取专治某种疾病的所有医生列表：
-GET  base /Practitioner?L2-depart-identifier=[id]&hospital-identifier=[id]&L1-depart-identifier=[id]{&_format=[mime-type]}
-获取姓名为“李翼”的所有医生：
-GET  base /Practitioner?name=李翼
+根据工号获取医生排班信息：
+GET  base /Schedule?doctor-identifier=[工号]{&_format=[mime-type]}
+根据医生系统id获取医生排班信息：
+GET  base /Schedule?actor=[医生的系统id]{&_format=[mime-type]}
+根据指定日期获取医生排班信息：
+GET  base /Schedule?date=>2013-12-20&<2013-12-26{&_format=[mime-type]}
+根据排班类型获取医生排班信息：
+GET  base /Schedule?type=专家{&_format=[mime-type]}
+根据停诊标志获取医生排班信息：
+GET  base /Schedule?status=true{&_format=[mime-type]}

@@ -4,6 +4,16 @@
 {
     "resourceType": "Slot",
     "id": "example",
+    "extension": [
+        {
+            "url": "http://moh.gov/fhir/schedule/maxnumber最大预约人次",
+            "valueString": "[int]"
+        },
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/serialNumber预约序号列表",
+            "valueString": "2,4,6,8,10,12,14"
+        }
+    ],
     "type": {
         "coding": [
             {
