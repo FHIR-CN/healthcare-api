@@ -5,7 +5,7 @@
     "id": "查询结果列表的id",
     "type": "固定值：searchset",
     "base": "服务器地址",
-    "total": "获取到的医院数目",
+    "total": "获取到的可选时间段数目",
     "entry": [
         {
             "resource": {
